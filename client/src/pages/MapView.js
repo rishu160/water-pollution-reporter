@@ -98,7 +98,7 @@ const MapView = () => {
       <div className="container">
         <div style={{textAlign: 'center', padding: '50px'}}>
           <div style={{fontSize: '2rem'}}>⏳</div>
-          <p>मैप लोड हो रहा है...</p>
+          <p>Loading map...</p>
         </div>
       </div>
     );
@@ -106,56 +106,56 @@ const MapView = () => {
 
   return (
     <div className="container">
-      <h2>🗺️ प्रदूषण मैप</h2>
+      <h2>🗺️ Pollution Map</h2>
       
       {/* Filters */}
       <div className="card">
-        <h3>फिल्टर</h3>
+        <h3>Filters</h3>
         <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px'}}>
           <div>
-            <label>प्रदूषण स्तर:</label>
+            <label>Pollution Level:</label>
             <select 
               className="form-control"
               value={filters.pollutionLevel}
               onChange={(e) => setFilters({...filters, pollutionLevel: e.target.value})}
             >
-              <option value="">सभी</option>
-              <option value="Low">कम</option>
-              <option value="Medium">मध्यम</option>
-              <option value="High">अधिक</option>
-              <option value="Critical">गंभीर</option>
+              <option value="">All</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Critical">Critical</option>
             </select>
           </div>
           
           <div>
-            <label>जल निकाय:</label>
+            <label>Water Body Type:</label>
             <select 
               className="form-control"
               value={filters.waterBodyType}
               onChange={(e) => setFilters({...filters, waterBodyType: e.target.value})}
             >
-              <option value="">सभी</option>
-              <option value="River">नदी</option>
-              <option value="Lake">झील</option>
-              <option value="Pond">तालाब</option>
-              <option value="Canal">नहर</option>
-              <option value="Stream">नाला</option>
-              <option value="Other">अन्य</option>
+              <option value="">All</option>
+              <option value="River">River</option>
+              <option value="Lake">Lake</option>
+              <option value="Pond">Pond</option>
+              <option value="Canal">Canal</option>
+              <option value="Stream">Stream</option>
+              <option value="Other">Other</option>
             </select>
           </div>
           
           <div>
-            <label>स्थिति:</label>
+            <label>Status:</label>
             <select 
               className="form-control"
               value={filters.status}
               onChange={(e) => setFilters({...filters, status: e.target.value})}
             >
-              <option value="">सभी</option>
-              <option value="Pending">लंबित</option>
-              <option value="Under Review">समीक्षाधीन</option>
-              <option value="In Progress">प्रगति में</option>
-              <option value="Resolved">हल हो गया</option>
+              <option value="">All</option>
+              <option value="Pending">Pending</option>
+              <option value="Under Review">Under Review</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Resolved">Resolved</option>
             </select>
           </div>
         </div>
@@ -183,18 +183,18 @@ const MapView = () => {
                 <Popup maxWidth={300}>
                   <div style={{padding: '10px'}}>
                     <h4>{report.title}</h4>
-                    <p><strong>प्रकार:</strong> {getWaterBodyText(report.waterBodyType)}</p>
-                    <p><strong>प्रदूषण स्तर:</strong> 
+                    <p><strong>Type:</strong> {report.waterBodyType}</p>
+                    <p><strong>Pollution Level:</strong> 
                       <span className={`pollution-level level-${report.pollutionLevel.toLowerCase()}`}>
-                        {getPollutionText(report.pollutionLevel)}
+                        {report.pollutionLevel}
                       </span>
                     </p>
-                    <p><strong>स्थिति:</strong> 
+                    <p><strong>Status:</strong> 
                       <span className={`status-badge status-${report.status.toLowerCase().replace(' ', '')}`}>
-                        {getStatusText(report.status)}
+                        {report.status}
                       </span>
                     </p>
-                    <p><strong>दिनांक:</strong> {formatDate(report.createdAt)}</p>
+                    <p><strong>Date:</strong> {formatDate(report.createdAt)}</p>
                     <p>{report.description.substring(0, 100)}...</p>
                     {report.photos && report.photos.length > 0 && (
                       <div style={{marginTop: '10px'}}>
@@ -216,25 +216,25 @@ const MapView = () => {
         <div style={{marginTop: '15px', display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap'}}>
           <div style={{display: 'flex', alignItems: 'center', gap: '5px'}}>
             <div style={{width: '15px', height: '15px', backgroundColor: '#28a745', borderRadius: '50%'}}></div>
-            <span>कम प्रदूषण</span>
+            <span>Low Pollution</span>
           </div>
           <div style={{display: 'flex', alignItems: 'center', gap: '5px'}}>
             <div style={{width: '15px', height: '15px', backgroundColor: '#ffc107', borderRadius: '50%'}}></div>
-            <span>मध्यम प्रदूषण</span>
+            <span>Medium Pollution</span>
           </div>
           <div style={{display: 'flex', alignItems: 'center', gap: '5px'}}>
             <div style={{width: '15px', height: '15px', backgroundColor: '#fd7e14', borderRadius: '50%'}}></div>
-            <span>अधिक प्रदूषण</span>
+            <span>High Pollution</span>
           </div>
           <div style={{display: 'flex', alignItems: 'center', gap: '5px'}}>
             <div style={{width: '15px', height: '15px', backgroundColor: '#dc3545', borderRadius: '50%'}}></div>
-            <span>गंभीर प्रदूषण</span>
+            <span>Critical Pollution</span>
           </div>
         </div>
       </div>
 
       <div style={{textAlign: 'center', marginTop: '20px', color: '#666'}}>
-        कुल {reports.length} रिपोर्ट्स दिखाई जा रही हैं
+        Showing {reports.length} total reports
       </div>
     </div>
   );
