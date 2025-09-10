@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import CameraCapture from '../components/CameraCapture';
 
 const ReportForm = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -9,7 +10,6 @@ const ReportForm = () => {
   const [location, setLocation] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showCamera, setShowCamera] = useState(false);
-  const [stream, setStream] = useState(null);
 
   const getCurrentLocation = () => {
     if (navigator.geolocation) {
@@ -39,41 +39,20 @@ const ReportForm = () => {
     setPhotos(files);
   };
 
-  const startCamera = async () => {
-    try {
-      const mediaStream = await navigator.mediaDevices.getUserMedia({ 
-        video: { facingMode: 'environment' }, 
-        audio: false 
-      });
-      setStream(mediaStream);
-      setShowCamera(true);
-    } catch (error) {
-      toast.error('Camera access denied or not available');
+  const handleCameraCapture = (file) => {
+    if (photos.length >= 5) {
+      toast.error('Maximum 5 photos allowed');
+      return;
     }
+    setPhotos(prev => [...prev, file]);
+    toast.success('Photo captured successfully!');
   };
 
-  const capturePhoto = () => {
-    const video = document.getElementById('camera-video');
-    const canvas = document.getElementById('camera-canvas');
-    const context = canvas.getContext('2d');
-    
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    context.drawImage(video, 0, 0);
-    
-    canvas.toBlob((blob) => {
-      const file = new File([blob], `photo-${Date.now()}.jpg`, { type: 'image/jpeg' });
-      setPhotos(prev => [...prev, file]);
-      stopCamera();
-      toast.success('Photo captured successfully!');
-    }, 'image/jpeg', 0.8);
+  const openCamera = () => {
+    setShowCamera(true);
   };
 
-  const stopCamera = () => {
-    if (stream) {
-      stream.getTracks().forEach(track => track.stop());
-      setStream(null);
-    }
+  const closeCamera = () => {
     setShowCamera(false);
   };
 
@@ -180,8 +159,8 @@ const ReportForm = () => {
               <button
                 type="button"
                 className="btn btn-success"
-                onClick={startCamera}
-                disabled={showCamera}
+                onClick={openCamera}
+                style={{padding: '10px 20px'}}
               >
                 📷 Take Photo
               </button>
@@ -194,40 +173,6 @@ const ReportForm = () => {
                 style={{flex: 1}}
               />
             </div>
-            
-            {showCamera && (
-              <div style={{marginBottom: '20px', textAlign: 'center'}}>
-                <video 
-                  id="camera-video" 
-                  autoPlay 
-                  playsInline
-                  ref={(video) => {
-                    if (video && stream) {
-                      video.srcObject = stream;
-                    }
-                  }}
-                  style={{width: '100%', maxWidth: '400px', border: '2px solid #007bff', borderRadius: '8px'}}
-                />
-                <canvas id="camera-canvas" style={{display: 'none'}} />
-                <div style={{marginTop: '10px'}}>
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={capturePhoto}
-                    style={{marginRight: '10px'}}
-                  >
-                    📸 Capture
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={stopCamera}
-                  >
-                    ❌ Cancel
-                  </button>
-                </div>
-              </div>
-            )}
             
             {photos.length > 0 && (
               <div style={{marginTop: '10px'}}>
@@ -337,6 +282,13 @@ const ReportForm = () => {
           </button>
         </form>
       </div>
+      
+      {showCamera && (
+        <CameraCapture
+          onPhotoCapture={handleCameraCapture}
+          onClose={closeCamera}
+        />
+      )}
     </div>
   );
 };
