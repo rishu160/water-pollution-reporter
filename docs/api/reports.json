@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "demo1",
+    "title": "गंगा नदी में प्लास्टिक कचरा",
+    "description": "गंगा नदी में बहुत सारा प्लास्टिक कचरा तैर रहा है। यह पर्यावरण के लिए हानिकारक है।",
+    "location": {
+      "latitude": 25.3176,
+      "longitude": 82.9739,
+      "address": "वाराणसी, उत्तर प्रदेश"
+    },
+    "photos": [],
+    "pollutionLevel": "High",
+    "waterBodyType": "River",
+    "reportedBy": {
+      "name": "अमित शर्मा",
+      "phone": "9876543211",
+      "email": "amit@example.com"
+    },
+    "status": "Pending",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "updatedAt": "2024-01-15T10:30:00Z"
+  },
+  {
+    "_id": "demo2",
+    "title": "तालाब में रासायनिक प्रदूषण",
+    "description": "फैक्ट्री का गंदा पानी तालाब में मिल रहा है। मछलियां मर रही हैं।",
+    "location": {
+      "latitude": 28.4595,
+      "longitude": 77.0266,
+      "address": "गुड़गांव, हरियाणा"
+    },
+    "photos": [],
+    "pollutionLevel": "Critical",
+    "waterBodyType": "Pond",
+    "reportedBy": {
+      "name": "प्रिया गुप्ता",
+      "phone": "9876543212",
+      "email": "priya@example.com"
+    },
+    "status": "Under Review",
+    "createdAt": "2024-01-14T15:45:00Z",
+    "updatedAt": "2024-01-14T15:45:00Z"
+  }
+]
