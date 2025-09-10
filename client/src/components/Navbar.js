@@ -6,7 +6,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-content">
         <Link to="/" className="navbar-brand">
-          💧 Water Reporter
+          💧 Raipur Water Reporter
         </Link>
         <ul className="navbar-nav">
           <li><Link to="/">Home</Link></li>

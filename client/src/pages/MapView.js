@@ -165,8 +165,8 @@ const MapView = () => {
       <div className="card">
         <div className="map-container">
           <MapContainer
-            center={[28.6139, 77.2090]} // Delhi coordinates as default
-            zoom={10}
+            center={[21.2514, 81.6296]} // Raipur coordinates
+            zoom={12}
             style={{ height: '100%', width: '100%' }}
           >
             <TileLayer

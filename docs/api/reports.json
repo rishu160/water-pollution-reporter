@@ -1,18 +1,18 @@
 [
   {
     "_id": "demo1",
-    "title": "गंगा नदी में प्लास्टिक कचरा",
-    "description": "गंगा नदी में बहुत सारा प्लास्टिक कचरा तैर रहा है। यह पर्यावरण के लिए हानिकारक है।",
+    "title": "Kharun River Plastic Pollution",
+    "description": "Large amount of plastic waste floating in Kharun River near Raipur. This is harmful to the environment and aquatic life.",
     "location": {
-      "latitude": 25.3176,
-      "longitude": 82.9739,
-      "address": "वाराणसी, उत्तर प्रदेश"
+      "latitude": 21.2514,
+      "longitude": 81.6296,
+      "address": "Kharun River, Raipur, Chhattisgarh"
     },
     "photos": [],
     "pollutionLevel": "High",
     "waterBodyType": "River",
     "reportedBy": {
-      "name": "अमित शर्मा",
+      "name": "Amit Sharma",
       "phone": "9876543211",
       "email": "amit@example.com"
     },
@@ -22,23 +22,44 @@
   },
   {
     "_id": "demo2",
-    "title": "तालाब में रासायनिक प्रदूषण",
-    "description": "फैक्ट्री का गंदा पानी तालाब में मिल रहा है। मछलियां मर रही हैं।",
+    "title": "Budha Talab Chemical Pollution",
+    "description": "Factory waste water mixing in Budha Talab. Fish are dying and water has turned black.",
     "location": {
-      "latitude": 28.4595,
-      "longitude": 77.0266,
-      "address": "गुड़गांव, हरियाणा"
+      "latitude": 21.2497,
+      "longitude": 81.6290,
+      "address": "Budha Talab, Raipur, Chhattisgarh"
     },
     "photos": [],
     "pollutionLevel": "Critical",
-    "waterBodyType": "Pond",
+    "waterBodyType": "Lake",
     "reportedBy": {
-      "name": "प्रिया गुप्ता",
+      "name": "Priya Gupta",
       "phone": "9876543212",
       "email": "priya@example.com"
     },
     "status": "Under Review",
     "createdAt": "2024-01-14T15:45:00Z",
     "updatedAt": "2024-01-14T15:45:00Z"
+  },
+  {
+    "_id": "demo3",
+    "title": "Telibandha Pond Sewage Problem",
+    "description": "Sewage water directly flowing into Telibandha pond. Bad smell and mosquito breeding.",
+    "location": {
+      "latitude": 21.2458,
+      "longitude": 81.6320,
+      "address": "Telibandha, Raipur, Chhattisgarh"
+    },
+    "photos": [],
+    "pollutionLevel": "Medium",
+    "waterBodyType": "Pond",
+    "reportedBy": {
+      "name": "Raj Kumar",
+      "phone": "9876543213",
+      "email": "raj@example.com"
+    },
+    "status": "In Progress",
+    "createdAt": "2024-01-13T09:20:00Z",
+    "updatedAt": "2024-01-13T09:20:00Z"
   }
 ]

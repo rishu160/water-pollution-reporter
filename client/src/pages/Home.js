@@ -27,8 +27,8 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero">
         <div className="container">
-          <h1>Water Pollution Reporter</h1>
-          <p>Report the condition of water bodies around you and contribute to cleaner water for everyone</p>
+          <h1>Raipur Water Pollution Reporter</h1>
+          <p>Report water pollution in Raipur, Chhattisgarh and help keep our city's water bodies clean</p>
           <Link to="/report" className="btn btn-primary" style={{marginRight: '15px'}}>
             📸 Report Pollution
           </Link>
