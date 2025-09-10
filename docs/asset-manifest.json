@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/water-pollution-reporter/static/css/main.d92d23f5.css",
-    "main.js": "/water-pollution-reporter/static/js/main.bbb11703.js",
+    "main.js": "/water-pollution-reporter/static/js/main.48f14721.js",
     "index.html": "/water-pollution-reporter/index.html",
     "main.d92d23f5.css.map": "/water-pollution-reporter/static/css/main.d92d23f5.css.map",
-    "main.bbb11703.js.map": "/water-pollution-reporter/static/js/main.bbb11703.js.map"
+    "main.48f14721.js.map": "/water-pollution-reporter/static/js/main.48f14721.js.map"
   },
   "entrypoints": [
     "static/css/main.d92d23f5.css",
-    "static/js/main.bbb11703.js"
+    "static/js/main.48f14721.js"
   ]
 }

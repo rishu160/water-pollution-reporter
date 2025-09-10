@@ -27,13 +27,13 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero">
         <div className="container">
-          <h1>जल प्रदूषण रिपोर्टर</h1>
-          <p>अपने आस-पास के जल निकायों की स्थिति की रिपोर्ट करें और स्वच्छ पानी के लिए योगदान दें</p>
+          <h1>Water Pollution Reporter</h1>
+          <p>Report the condition of water bodies around you and contribute to cleaner water for everyone</p>
           <Link to="/report" className="btn btn-primary" style={{marginRight: '15px'}}>
-            📸 रिपोर्ट करें
+            📸 Report Pollution
           </Link>
           <Link to="/map" className="btn btn-success">
-            🗺️ मैप देखें
+            🗺️ View Map
           </Link>
         </div>
       </section>
@@ -43,41 +43,41 @@ const Home = () => {
         <div className="stats-grid">
           <div className="stat-card">
             <div className="stat-number">{stats.totalReports}</div>
-            <div className="stat-label">कुल रिपोर्ट्स</div>
+            <div className="stat-label">Total Reports</div>
           </div>
           <div className="stat-card">
             <div className="stat-number">{stats.pendingReports}</div>
-            <div className="stat-label">लंबित रिपोर्ट्स</div>
+            <div className="stat-label">Pending Reports</div>
           </div>
           <div className="stat-card">
             <div className="stat-number">{stats.resolvedReports}</div>
-            <div className="stat-label">हल की गई रिपोर्ट्स</div>
+            <div className="stat-label">Resolved Reports</div>
           </div>
         </div>
 
         {/* Features */}
         <div className="card">
-          <h2>कैसे काम करता है?</h2>
+          <h2>How It Works?</h2>
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', marginTop: '20px'}}>
             <div style={{textAlign: 'center', padding: '20px'}}>
               <div style={{fontSize: '3rem', marginBottom: '10px'}}>📱</div>
-              <h3>1. फोटो लें</h3>
-              <p>प्रदूषित जल निकाय की तस्वीर खींचें</p>
+              <h3>1. Take Photo</h3>
+              <p>Capture images of polluted water bodies</p>
             </div>
             <div style={{textAlign: 'center', padding: '20px'}}>
               <div style={{fontSize: '3rem', marginBottom: '10px'}}>📍</div>
-              <h3>2. लोकेशन शेयर करें</h3>
-              <p>सटीक स्थान की जानकारी दें</p>
+              <h3>2. Share Location</h3>
+              <p>Provide accurate location information</p>
             </div>
             <div style={{textAlign: 'center', padding: '20px'}}>
               <div style={{fontSize: '3rem', marginBottom: '10px'}}>📝</div>
-              <h3>3. विवरण लिखें</h3>
-              <p>समस्या का विस्तृत विवरण दें</p>
+              <h3>3. Write Description</h3>
+              <p>Give detailed description of the problem</p>
             </div>
             <div style={{textAlign: 'center', padding: '20px'}}>
               <div style={{fontSize: '3rem', marginBottom: '10px'}}>🏛️</div>
-              <h3>4. अधिकारियों तक पहुंचे</h3>
-              <p>आपकी रिपोर्ट संबंधित विभाग तक पहुंचेगी</p>
+              <h3>4. Reach Authorities</h3>
+              <p>Your report will reach the relevant department</p>
             </div>
           </div>
         </div>

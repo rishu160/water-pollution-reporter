@@ -83,16 +83,16 @@ const ReportForm = () => {
   return (
     <div className="container">
       <div className="card">
-        <h2>🚨 प्रदूषण रिपोर्ट करें</h2>
+        <h2>🚨 Report Pollution</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           
           <div className="form-group">
-            <label>रिपोर्ट का शीर्षक *</label>
+            <label>Report Title *</label>
             <input
               type="text"
               className="form-control"
-              {...register('title', { required: 'शीर्षक आवश्यक है' })}
-              placeholder="जैसे: तालाब में कचरा और गंदगी"
+              {...register('title', { required: 'Title is required' })}
+              placeholder="e.g: Garbage and dirt in pond"
             />
             {errors.title && <span style={{color: 'red'}}>{errors.title.message}</span>}
           </div>

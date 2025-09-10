@@ -9,10 +9,10 @@ const Navbar = () => {
           💧 Water Reporter
         </Link>
         <ul className="navbar-nav">
-          <li><Link to="/">होम</Link></li>
-          <li><Link to="/report">रिपोर्ट करें</Link></li>
-          <li><Link to="/map">मैप देखें</Link></li>
-          <li><Link to="/dashboard">डैशबोर्ड</Link></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/report">Report Pollution</Link></li>
+          <li><Link to="/map">View Map</Link></li>
+          <li><Link to="/dashboard">Dashboard</Link></li>
         </ul>
       </div>
     </nav>
