@@ -8,6 +8,8 @@ const ReportForm = () => {
   const [photos, setPhotos] = useState([]);
   const [location, setLocation] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showCamera, setShowCamera] = useState(false);
+  const [stream, setStream] = useState(null);
 
   const getCurrentLocation = () => {
     if (navigator.geolocation) {
@@ -31,10 +33,48 @@ const ReportForm = () => {
   const handlePhotoChange = (e) => {
     const files = Array.from(e.target.files);
     if (files.length > 5) {
-      toast.error('अधिकतम 5 फोटो अपलोड कर सकते हैं');
+      toast.error('Maximum 5 photos allowed');
       return;
     }
     setPhotos(files);
+  };
+
+  const startCamera = async () => {
+    try {
+      const mediaStream = await navigator.mediaDevices.getUserMedia({ 
+        video: { facingMode: 'environment' }, 
+        audio: false 
+      });
+      setStream(mediaStream);
+      setShowCamera(true);
+    } catch (error) {
+      toast.error('Camera access denied or not available');
+    }
+  };
+
+  const capturePhoto = () => {
+    const video = document.getElementById('camera-video');
+    const canvas = document.getElementById('camera-canvas');
+    const context = canvas.getContext('2d');
+    
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    context.drawImage(video, 0, 0);
+    
+    canvas.toBlob((blob) => {
+      const file = new File([blob], `photo-${Date.now()}.jpg`, { type: 'image/jpeg' });
+      setPhotos(prev => [...prev, file]);
+      stopCamera();
+      toast.success('Photo captured successfully!');
+    }, 'image/jpeg', 0.8);
+  };
+
+  const stopCamera = () => {
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+      setStream(null);
+    }
+    setShowCamera(false);
   };
 
   const onSubmit = async (data) => {
@@ -135,17 +175,95 @@ const ReportForm = () => {
           </div>
 
           <div className="form-group">
-            <label>फोटो अपलोड करें (अधिकतम 5)</label>
-            <input
-              type="file"
-              className="form-control"
-              multiple
-              accept="image/*"
-              onChange={handlePhotoChange}
-            />
+            <label>Upload Photos (Maximum 5)</label>
+            <div style={{display: 'flex', gap: '10px', marginBottom: '10px'}}>
+              <button
+                type="button"
+                className="btn btn-success"
+                onClick={startCamera}
+                disabled={showCamera}
+              >
+                📷 Take Photo
+              </button>
+              <input
+                type="file"
+                className="form-control"
+                multiple
+                accept="image/*"
+                onChange={handlePhotoChange}
+                style={{flex: 1}}
+              />
+            </div>
+            
+            {showCamera && (
+              <div style={{marginBottom: '20px', textAlign: 'center'}}>
+                <video 
+                  id="camera-video" 
+                  autoPlay 
+                  playsInline
+                  ref={(video) => {
+                    if (video && stream) {
+                      video.srcObject = stream;
+                    }
+                  }}
+                  style={{width: '100%', maxWidth: '400px', border: '2px solid #007bff', borderRadius: '8px'}}
+                />
+                <canvas id="camera-canvas" style={{display: 'none'}} />
+                <div style={{marginTop: '10px'}}>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={capturePhoto}
+                    style={{marginRight: '10px'}}
+                  >
+                    📸 Capture
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={stopCamera}
+                  >
+                    ❌ Cancel
+                  </button>
+                </div>
+              </div>
+            )}
+            
             {photos.length > 0 && (
-              <div style={{marginTop: '10px', color: '#666'}}>
-                {photos.length} फोटो चुनी गई
+              <div style={{marginTop: '10px'}}>
+                <div style={{color: '#666', marginBottom: '10px'}}>
+                  {photos.length} photos selected
+                </div>
+                <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', gap: '10px'}}>
+                  {photos.map((photo, index) => (
+                    <div key={index} style={{position: 'relative'}}>
+                      <img 
+                        src={URL.createObjectURL(photo)} 
+                        alt={`Preview ${index + 1}`}
+                        style={{width: '100%', height: '80px', objectFit: 'cover', borderRadius: '4px'}}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setPhotos(photos.filter((_, i) => i !== index))}
+                        style={{
+                          position: 'absolute',
+                          top: '-5px',
+                          right: '-5px',
+                          background: 'red',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '50%',
+                          width: '20px',
+                          height: '20px',
+                          fontSize: '12px',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
